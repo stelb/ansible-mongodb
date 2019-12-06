@@ -1,0 +1,14 @@
+[footloose:children]
+footloose_config
+footloose_route
+footloose_shard
+[footloose_config]
+mongodb-config0 ansible_connection=docker
+mongodb-config1 ansible_connection=docker
+mongodb-config2 ansible_connection=docker
+[footloose_route]
+mongodb-route0 ansible_connection=docker
+[footloose_shard]
+mongodb-shard0 ansible_connection=docker
+mongodb-shard1 ansible_connection=docker
+mongodb-shard2 ansible_connection=docker

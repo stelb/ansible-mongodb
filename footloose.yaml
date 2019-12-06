@@ -1,0 +1,31 @@
+cluster:
+  name: mongodb
+  privateKey: cluster-key
+machines:
+- count: 3
+  spec:
+    backend: docker
+    image: quay.io/footloose/centos7:0.6.0
+    networks:
+    - mongodb-cluster
+    name: config%d
+    portMappings:
+    - containerPort: 22
+- count: 1
+  spec:
+    backend: docker
+    image: quay.io/footloose/centos7:0.6.0
+    networks:
+    - mongodb-cluster
+    name: route%d
+    portMappings:
+    - containerPort: 22
+- count: 3
+  spec:
+    backend: docker
+    image: quay.io/footloose/centos7:0.6.0
+    networks:
+    - mongodb-cluster
+    name: shard%d
+    portMappings:
+    - containerPort: 22
