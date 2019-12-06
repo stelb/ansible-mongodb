@@ -6,6 +6,12 @@
   shell: "openssl rand -base64 756 > /tmp/mongo-keyfile"
     #creates: /tmp/mongo-keyfile
   delegate_to: localhost
+  run_once: true
+
+- name: check if keyfile exists
+  stat:
+    path: /var/lib/mongo/mongo-keyfile
+  register: mongo_keyfile
 
 - name: copy mongo keyfile
   copy:
@@ -14,3 +20,4 @@
     owner: mongod
     group: mongod
     mode: 0400
+  when: mongo_keyfile.stat.exists != true
