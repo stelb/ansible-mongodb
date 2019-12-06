@@ -2,6 +2,7 @@
 - name: restart mongod
   service:
     name:  mongod
+    state: restarted
 
 - name: start mongod
   service:
@@ -10,5 +11,5 @@
 
 - name: stop mongod
   service:
-    name: mongod 
+    name: mongod
     state: stopped
