@@ -7,6 +7,12 @@ that's just a start for learning mongodb
 
 shardX <-> route0 <-> configX
 
+## Status
+
+config servers are created
+
+## Usage
+
     docker network create mongodb-cluster
     footloose create
     ansible-playbook -i inventory mongodb.yml
