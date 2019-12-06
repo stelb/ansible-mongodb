@@ -1,0 +1,8 @@
+---
+- hosts: all
+  roles:
+  - role: mongodb
+
+- hosts: footloose_config
+  roles:
+    - role: mongodb-config

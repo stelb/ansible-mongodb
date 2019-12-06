@@ -1,0 +1,35 @@
+---
+- name: enable mongod
+  service:
+    name: mongod
+    enabled: yes
+    state: started
+
+- name: create admin user
+  mongodb_user:
+    name: mongo-admin
+    password: "{{admin_password}}"
+    database: admin
+    roles: 'root'
+  tags:
+    - admin
+  #when: inventory_hostname == groups[group_names[0]][0]
+
+- name: create config
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+  notify:
+    - restart mongod
+
+#- name: create replica set
+#  mongodb_replicaset:
+#    login_host: "{{inventory_hostname}}"
+#    login_user: mongo-admin
+#    login_database: admin
+#    login_password: "{{admin_password}}"
+#    replica_set: configReplSet
+#    members: "{{ansible_play_hosts}}"
+#  when: inventory_hostname == groups[group_names[0]][0]
+#  #run_once: true
+#  tags: replica

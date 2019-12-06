@@ -1,0 +1,16 @@
+---
+- include_tasks: packages.yml
+#- include_tasks:
+
+- name: mongo keyfile
+  shell: "openssl rand -base64 756 > /tmp/mongo-keyfile"
+    #creates: /tmp/mongo-keyfile
+  delegate_to: localhost
+
+- name: copy mongo keyfile
+  copy:
+    src: /tmp/mongo-keyfile
+    dest: /var/lib/mongo
+    owner: mongod
+    group: mongod
+    mode: 0400
