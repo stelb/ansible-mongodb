@@ -13,6 +13,7 @@
     roles: 'root'
   tags:
     - admin
+  ignore_errors: true
   #when: inventory_hostname == groups[group_names[0]][0]
 
 - name: create config
@@ -22,14 +23,18 @@
   notify:
     - restart mongod
 
-#- name: create replica set
-#  mongodb_replicaset:
-#    login_host: "{{inventory_hostname}}"
-#    login_user: mongo-admin
-#    login_database: admin
-#    login_password: "{{admin_password}}"
-#    replica_set: configReplSet
-#    members: "{{ansible_play_hosts}}"
-#  when: inventory_hostname == groups[group_names[0]][0]
-#  #run_once: true
-#  tags: replica
+- name: flush handlers
+  meta: flush_handlers
+
+
+- name: create replica set
+  mongodb_replicaset:
+    login_host: "{{inventory_hostname}}"
+    login_user: mongo-admin
+    login_database: admin
+    login_password: "{{admin_password}}"
+    replica_set: configReplSet
+    members: "{{ansible_play_hosts}}"
+  when: inventory_hostname == groups[group_names[0]][0]
+  #run_once: true
+  tags: replica
