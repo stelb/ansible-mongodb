@@ -6,3 +6,7 @@
 - hosts: footloose_config
   roles:
     - role: mongodb-config
+
+- hosts: footloose_route
+  roles:
+    - role: mongodb-route
