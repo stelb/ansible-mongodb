@@ -3,12 +3,12 @@ footloose_config
 footloose_route
 footloose_shard
 [footloose_config]
-mongodb-config0 ansible_connection=docker
-mongodb-config1 ansible_connection=docker
-mongodb-config2 ansible_connection=docker
+config0 ansible_host=mongodb-config0 ansible_connection=docker
+config1 ansible_host=mongodb-config1 ansible_connection=docker
+config2 ansible_host=mongodb-config2 ansible_connection=docker
 [footloose_route]
-mongodb-route0 ansible_connection=docker
+route0 ansible_host=mongodb-route0 ansible_connection=docker
 [footloose_shard]
-mongodb-shard0 ansible_connection=docker
-mongodb-shard1 ansible_connection=docker
-mongodb-shard2 ansible_connection=docker
+shard0 ansible_host=mongodb-shard0 ansible_connection=docker
+shard1 ansible_host=mongodb-shard1 ansible_connection=docker
+shard2 ansible_host=mongodb-shard2 ansible_connection=docker
