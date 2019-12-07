@@ -26,15 +26,15 @@
 - name: flush handlers
   meta: flush_handlers
 
-
 - name: create replica set
   mongodb_replicaset:
     login_host: "{{inventory_hostname}}"
+    login_port: 27019
     login_user: mongo-admin
     login_database: admin
     login_password: "{{admin_password}}"
     replica_set: configReplSet
-    members: "{{ansible_play_hosts}}"
+    members: "{{ansible_play_hosts | map('regex_replace', '$', ':27019') | list }}"
   when: inventory_hostname == groups[group_names[0]][0]
   #run_once: true
   tags: replica
