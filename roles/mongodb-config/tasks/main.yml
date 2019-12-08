@@ -1,10 +1,13 @@
 ---
-- name: enable mongod
+# start mongod to enable authentification
+- name: start mongod
   service:
     name: mongod
     enabled: yes
     state: started
 
+# try to create admin user,
+# if it fails authentification is already enabled
 - name: create admin user
   mongodb_user:
     name: mongo-admin
