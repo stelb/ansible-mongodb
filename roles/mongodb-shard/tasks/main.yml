@@ -1,0 +1,33 @@
+---
+- name: start mongod
+  service:
+    name: mongod
+    enabled: true
+    state: started
+  ignore_errors: true
+
+- name: create config
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+  notify:
+    - restart mongod
+
+- name: flush handlers
+  meta: flush_handlers
+
+- name: add shard
+  mongodb_shard:
+    login_database: admin
+    login_host: route0
+    login_user: mongo-admin
+    login_password: "{{admin_password}}"
+    shard: "{{ansible_hostname}}:27017"
+
+# - name: add shards
+#   mongodb_shard:
+#     login_database: admin
+#     login_host: route0 # hardcoded right now
+#     login_user: mongo-admin
+#     login_password: "{{admin_password}}"
+#

@@ -10,3 +10,7 @@
 - hosts: footloose_route
   roles:
     - role: mongodb-route
+
+- hosts: footloose_shard
+  roles:
+    - role: mongodb-shard
