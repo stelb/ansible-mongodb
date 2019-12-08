@@ -10,3 +10,9 @@
   template:
     src: mongos.service.j2
     dest: /etc/systemd/system/mongos.service
+
+- name: start mongos
+  service:
+    name: mongos
+    enabled: true
+    state: started

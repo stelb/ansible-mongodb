@@ -5,6 +5,7 @@ After=network.target
 [Service]
 User=mongod
 Group=mongod
+Type=forking
 ExecStart=/usr/bin/mongos --config /etc/mongos.conf
 # file size
 LimitFSIZE=infinity
