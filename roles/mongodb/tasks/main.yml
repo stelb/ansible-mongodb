@@ -2,6 +2,14 @@
 - include_tasks: packages.yml
 #- include_tasks:
 
+- name: tmpfiles config
+  copy:
+    dest: /lib/tmpfiles.d/mongodb.conf
+    content: "d /var/run/mongodb 0755 mongod mongod"
+
+- name: tmpfiles create
+  command: systemd-tmpfiles --create mongodb.conf
+
 - name: mongo keyfile
   shell: "openssl rand -base64 756 > /tmp/mongo-keyfile"
     #creates: /tmp/mongo-keyfile
