@@ -9,7 +9,11 @@ shardX <-> route0 <-> configX
 
 ## Status
 
-config servers are created
+config, route and shard servers created..
+
+TODO:
+ansible tweaking, os tuning, documentation
+
 
 ## Usage
 
